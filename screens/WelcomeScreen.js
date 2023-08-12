@@ -1,37 +1,32 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
-
+import AppButton from "../components/AppButton";
 
 function WelcomeScreen() {
     return (
         <ImageBackground
+            blurRadius={7}
             source={require('../assets/background.jpg')}
-            style={styles.container} >
-
+            style={styles.container}
+        >
             <View style={styles.title}>
                 <Image
                     source={require('../assets/logo-red.png')}
                     style={styles.logo} />
-                <Text>
+                <Text style={styles.titleText}>
                     sell what you dont need
                 </Text>
             </View>
 
             <View style={styles.buttons}>
-
-                <View style={{
-                    backgroundColor: '#fc5c65',
-                    height: 70
-                }}></View>
-
-                <View
-                    style={{
-                        backgroundColor: '#4ECDC4',
-                        height: 70
-                    }}></View>
+                <AppButton
+                    color='#fc5c65'
+                    onPress={() => console.log("tapped")}>LOGIN</AppButton>
+                <AppButton
+                    color='#4ECDC4'>REGISTER</AppButton>
 
             </View>
-        </ImageBackground>
+        </ImageBackground >
 
     );
 }
@@ -43,20 +38,30 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
+
     title: {
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        marginTop: 80
     },
     logo: {
         width: 100,
-        height: 100
+        height: 100,
+
+    },
+    titleText: {
+        fontSize: 20,
+        margin: 10,
+        fontWeight: "bold"
+
     },
     buttons: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        marginBottom: 20
     },
 
 });
