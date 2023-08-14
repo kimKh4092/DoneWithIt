@@ -1,6 +1,8 @@
-
-
 import { Image, StatusBar, SafeAreaView, StyleSheet, View } from 'react-native';
+import {
+    MaterialCommunityIcons
+} from '@expo/vector-icons'
+
 
 function ViewImageScreen() {
 
@@ -9,20 +11,18 @@ function ViewImageScreen() {
         <SafeAreaView style={styles.container}>
 
             <View style={styles.buttons}>
-                <View style={{
-                    backgroundColor: '#fc5c65',
-                    height: 50,
-                    width: 50,
-                    left: 20,
-
-                }}></View>
-                <View style={{
-                    backgroundColor: '#4ECDC4',
-                    height: 50,
-                    width: 50,
-                    right: 20,
-                }}></View>
-
+                <MaterialCommunityIcons name='close'
+                    color='white'
+                    size={35}
+                    style={{
+                        margin: 20
+                    }} />
+                <MaterialCommunityIcons name='trash-can-outline'
+                    color='white'
+                    size={35}
+                    style={{
+                        margin: 20
+                    }} />
             </View>
 
             <Image
@@ -34,9 +34,7 @@ function ViewImageScreen() {
 
                 }}
                 source={require('../assets/chair.jpg')} />
-
         </SafeAreaView>
-
     );
 }
 
