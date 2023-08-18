@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
+import ListItem from '../components/ListItem'
 
 export default function ListingDetails() {
     return (
@@ -12,17 +13,12 @@ export default function ListingDetails() {
             <Text style={styles.price}>$100</Text>
 
             <View style={styles.seller}>
-                <Image
-                    style={styles.profile}
-                    source={require('../assets/mosh.jpg')} />
-                <View style={{
-                    flexDirection: 'column',
-                    marginHorizontal: 10,
-                    justifyContent: 'center'
-                }}>
-                    <Text style={styles.name}>Mosh Hamedani</Text>
-                    <Text style={styles.info}>5 Listings</Text>
-                </View>
+                <ListItem
+                    image={require("../assets/mosh.jpg")}
+                    title="Mosh Hamedani"
+                    subTitle="5 Listings"
+                />
+
 
             </View>
         </View>
@@ -67,15 +63,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         margin: 20
     },
-    profile: {
-        width: 70,
-        height: 70,
-        borderRadius: 35
-    },
-    name: {
-        fontWeight: 'bold'
-    },
-    info: {
-        color: 'grey'
-    }
 })
