@@ -21,9 +21,12 @@ function WelcomeScreen() {
             <View style={styles.buttons}>
                 <AppButton
                     color='#fc5c65'
-                    onPress={() => console.log("tapped")}>LOGIN</AppButton>
+                    onPress={() => console.log("tapped")}>
+                    LOGIN</AppButton>
                 <AppButton
-                    color='#4ECDC4'>REGISTER</AppButton>
+                    color='#4ECDC4'
+                    onPress={() => console.log("tapped")}>
+                    REGISTER</AppButton>
 
             </View>
         </ImageBackground >

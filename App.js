@@ -1,24 +1,18 @@
 import { View } from "react-native";
-import AppCard from "./components/AppCard";
-import ViewImageScreen from "./screens/ViewImageScreen";
-import WelcomeScreen from "./screens/WelcomeScreen";
-import ListingDetails from "./screens/Listing";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import LoginScreen from './screens/LoginScreen'
 
-import {
-  MaterialCommunityIcons
-} from '@expo/vector-icons'
+
+import ListingDetails from "./screens/ListingDetails";
+import LoginScreen from './screens/LoginScreen'
 import MessagesScreen from "./screens/MessagesScreen";
-import MyAccountScreen from "./screens/AccountScreen";
-import MainScreen from "./screens/MainScreen";
 import AppTextInput from "./components/AppTextInput";
 import AppPicker from "./components/AppPicker";
 import { useState } from "react";
 import RegisterScreen from "./screens/RegisterScreen";
 import ListingEditeScreen from "./screens/ListingEditeScreen";
-
-
+import ImageInput from "./components/ImageInput";
+import Screen from './components/Screen'
+import ImageInputList from "./components/ImageInputList";
+import * as ImagePicker from 'expo-image-picker'
 // const categories = [
 //   {
 //     label: 'Furniture',
@@ -37,45 +31,34 @@ import ListingEditeScreen from "./screens/ListingEditeScreen";
 export default function App() {
 
   const [category, setCategory] = useState();
+  const [imageUris, setUri] = useState([]);
+
+  const selectImage = async () => {
+    const uris = [...imageUris];
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.canceled) {
+        uris.push(
+          {
+            uri: result.assets[0].uri,
+          });
+        console.log(uris)
+        setUri(uris);
+      }
+
+
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
 
   return (
-    // <View style={{
-    //   backgroundColor: '#f8f4f4',
-    //   flex: 1,
-    //   justifyContent: 'center',
-    //   alignItems: 'center'
-    // }}>
-    //   <AppCard
-    //     title='Red jacket for sale!'
-    //     subTitle='$100'
-    //     image={require('./assets/jacket.jpg')} />
-    // </View>
 
-    // <ListingDetails />
-    // <ViewImageScreen />
     // <GestureHandlerRootView>
-    //   <MessagesScreen />
+    //   <ListingDetails />
     // </GestureHandlerRootView>
 
-    // my account screen
-    // <View style={{
-    //   backgroundColor: '#f8f4f4',
-    //   flex: 1,
-    //   paddingTop: 20
-    // }}>
-    //   <GestureHandlerRootView >
-    //     <MyAccountScreen />
-    //   </GestureHandlerRootView>
-    // </View>
 
-    // <View style={{
-    //   backgroundColor: '#f8f4f4',
-    //   flex: 1,
-    //   paddingTop: 20
-    // }
-    // }>
-    //   <MainScreen />
-    // </View>
 
 
     // inputs
@@ -97,11 +80,23 @@ export default function App() {
     //   placeholder='category' />
     // </View>
 
-    // forms
-    // <LoginScreen />
+
+    <LoginScreen />
     // <RegisterScreen />
-    <ListingEditeScreen />
+
+    // <ListingEditeScreen />
+
+    // <Screen>
+    //   <GestureHandlerRootView >
+    //     <ImageInputList
+    //       imageUris={imageUris}
+    //       selectImage={selectImage} />
+    //   </GestureHandlerRootView>
+    // </Screen>
+
 
 
   )
 }
+
+

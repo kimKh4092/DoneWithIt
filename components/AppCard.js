@@ -13,17 +13,11 @@ export default function AppCard({ title, subTitle, image }) {
 }
 
 const styles = StyleSheet.create({
-    background: {
-        backgroundColor: '#f8f4f4',
-        flex: 0.45,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     card: {
         backgroundColor: '#fff',
         width: 320,
         height: 270,
-        marginTop: 30,
+        marginTop: 40,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'flex-start',

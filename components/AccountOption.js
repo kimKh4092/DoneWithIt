@@ -5,11 +5,9 @@ import {
     MaterialCommunityIcons
 } from '@expo/vector-icons'
 
-
 export default function AccountOption({ title, icon, onPress, color }) {
     return (
-        <Swipeable
-        >
+        <Swipeable>
             <TouchableHighlight
                 underlayColor='#f8f4f4'
                 onPress={onPress}>
@@ -23,6 +21,10 @@ export default function AccountOption({ title, icon, onPress, color }) {
                     </View>
 
                     <Text style={styles.title}>{title}</Text>
+
+                    <MaterialCommunityIcons name='chevron-right'
+                        size={20}
+                    />
 
                 </View>
             </TouchableHighlight>
@@ -40,16 +42,15 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: "bold",
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        flex: 1,
     },
     icon: {
-
         borderRadius: 20,
         width: 40,
         height: 40,
         justifyContent: "center",
         alignItems: "center"
-
     }
 });
 

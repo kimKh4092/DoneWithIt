@@ -1,7 +1,9 @@
 import React from "react";
 import AppCard from "../components/AppCard";
-import { View, FlatList, StyleSheet, Platform, StatusBar, SafeAreaView } from "react-native";
+import Screen from "../components/Screen";
+import { View, FlatList, StyleSheet } from "react-native";
 
+//for test
 const listings = [{
     id: 1,
     title: 'Red jacket for sale!',
@@ -19,13 +21,10 @@ const listings = [{
 export default function MainScreen() {
 
     return (
-        <SafeAreaView style={styles.screen}>
-            <View style={{
-                backgroundColor: '#f8f4f4',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-
+        <View style={
+            styles.container
+        }>
+            <Screen>
                 <FlatList
                     data={listings}
                     keyExtractor={listing => listing.id.toString()}
@@ -34,16 +33,16 @@ export default function MainScreen() {
                             title={item.title}
                             subTitle={item.subTitle}
                             image={item.image} />} />
-
-            </View>
-        </SafeAreaView>
+            </Screen>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         backgroundColor: '#f8f4f4',
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

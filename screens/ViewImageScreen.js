@@ -3,13 +3,10 @@ import {
     MaterialCommunityIcons
 } from '@expo/vector-icons'
 
-
 function ViewImageScreen() {
 
     return (
-
         <SafeAreaView style={styles.container}>
-
             <View style={styles.buttons}>
                 <MaterialCommunityIcons name='close'
                     color='white'

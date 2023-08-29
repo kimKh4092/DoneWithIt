@@ -19,7 +19,6 @@ export default function ListingDetails() {
                     subTitle="5 Listings"
                 />
 
-
             </View>
         </View>
     )
