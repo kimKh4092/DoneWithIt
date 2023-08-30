@@ -18,7 +18,7 @@ const listings = [{
 }
 ]
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
 
     return (
         <View style={
@@ -32,7 +32,8 @@ export default function MainScreen() {
                         <AppCard
                             title={item.title}
                             subTitle={item.subTitle}
-                            image={item.image} />} />
+                            image={item.image}
+                            onPress={() => navigation.navigate('ListingDetails')} />} />
             </Screen>
         </View>
     )

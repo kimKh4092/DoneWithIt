@@ -4,7 +4,6 @@ import {
     MaterialCommunityIcons
 } from '@expo/vector-icons'
 
-
 export default function AppTextInput({ icon, ...otherProps }) {
     return (
         <View style={styles.container}>

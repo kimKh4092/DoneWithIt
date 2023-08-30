@@ -27,35 +27,38 @@ export default function RegisterScreen() {
                 initialValues={{ email: '', name: '', password: '' }}
                 onSubmit={values => console.log(values)}
                 validationSchema={validationSchema}>
-                {({ handleChange, handleSubmit, errors }) => (
+                {({ handleChange, handleSubmit, errors, touched, setFieldTouched }) => (
                     <>
                         <AppTextInput
                             placeholder='name'
                             autoCapitalize='none'
+                            onBlur={() => setFieldTouched('name')}
                             icon='account'
                             autoCorrect={false}
                             onChangeText={handleChange('name')} />
-                        {errors.name && <Text style={styles.error}>{errors.name}</Text>}
+                        {errors.name && touched.name && <Text style={styles.error}>{errors.name}</Text>}
 
                         <AppTextInput
                             placeholder='email'
                             autoCapitalize='none'
                             icon='email'
+                            onBlur={() => setFieldTouched('email')}
                             autoCorrect={false}
                             keyboardType='email-address'
                             textContentTypte='emailAddress'
                             onChangeText={handleChange('email')} />
-                        {errors.email && <Text style={styles.error}>{errors.email}</Text>}
+                        {errors.email && touched.email && <Text style={styles.error}>{errors.email}</Text>}
 
                         <AppTextInput
                             placeholder='password'
                             autoCapitalize='none'
+                            onBlur={() => setFieldTouched('password')}
                             icon='lock'
                             autoCorrect={false}
                             secureTextEntry={true}
                             textContentTypte='password'
                             onChangeText={handleChange('password')} />
-                        {errors.password && <Text style={styles.error}>{errors.password}</Text>}
+                        {errors.password && touched.password && <Text style={styles.error}>{errors.password}</Text>}
 
                         <AppButton
                             style={{

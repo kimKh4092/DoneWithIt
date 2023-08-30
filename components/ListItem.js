@@ -4,6 +4,8 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {
     MaterialCommunityIcons
 } from '@expo/vector-icons'
+
+
 function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
     return (
         <Swipeable
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 20,
         backgroundColor: 'white',
-
     },
     image: {
         width: 70,

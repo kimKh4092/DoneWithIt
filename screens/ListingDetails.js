@@ -1,41 +1,43 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import ListItem from '../components/ListItem'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-export default function ListingDetails() {
+export default function ListingDetails({ publisher }) {
     return (
-        <View style={styles.card}>
-            <Image
-                resizeMode='contain'
-                style={styles.image}
-                source={require('../assets/jacket.jpg')} />
+        <View style={styles.container}>
+            <GestureHandlerRootView>
 
-            <Text style={styles.title}>Red jacket for sale</Text>
-            <Text style={styles.price}>$100</Text>
+                <View style={styles.card}>
+                    <Image
+                        resizeMode='contain'
+                        style={styles.image}
+                        source={require('../assets/jacket.jpg')} />
 
-            <View style={styles.seller}>
-                <ListItem
-                    image={require("../assets/mosh.jpg")}
-                    title="Mosh Hamedani"
-                    subTitle="5 Listings"
-                />
+                    <Text style={styles.title}>Red jacket for sale</Text>
+                    <Text style={styles.price}>$100</Text>
 
-            </View>
+                    <View style={styles.publisher}>
+                        <Image style={styles.profile} source={require('../assets/mosh.jpg')} />
+                        <View >
+                            <Text style={styles.name}>Mosh Hamedani</Text>
+                            <Text style={styles.subTitle}>5 Listings</Text>
+                        </View>
+                    </View>
+                </View>
+
+            </GestureHandlerRootView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    background: {
-        backgroundColor: '#f8f4f4',
-        flex: 0.45,
-        justifyContent: 'center',
-        alignItems: 'center'
+    container: {
+        flex: 1,
+        backgroundColor: 'white'
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'flex-start',
-
     },
     title: {
         color: 'black',
@@ -58,8 +60,22 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 15,
         borderTopLeftRadius: 15,
     },
-    seller: {
-        flexDirection: 'row',
-        margin: 20
+    publisher: {
+        flexDirection: "row",
+        padding: 20,
+        backgroundColor: 'white',
     },
+    profile: {
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        marginRight: 10,
+    },
+    subTitle: {
+        color: 'grey',
+    },
+    name: {
+        fontWeight: "bold",
+    },
+
 })

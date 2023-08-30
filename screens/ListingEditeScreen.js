@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-    StyleSheet, Image, Platform, StatusBar,
-    SafeAreaView
+    StyleSheet, Text
 } from "react-native"
+import Screen from '../components/Screen'
 import AppTextInput from "../components/AppTextInput";
 import AppPicker from "../components/AppPicker";
 import AppButton from "../components/AppButton";
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 const categories = [
     {
@@ -22,48 +24,91 @@ const categories = [
     }
 ]
 
+const validationSchema = Yup.object().shape({
+    title: Yup.string().required().label('Title'),
+    price: Yup.number().required().label('Price'),
+    category: Yup.object().required().label('Category'),
+    description: Yup.string().required().min(4).label('Description')
+})
+
 export default function ListingEditeScreen() {
-    const [category, setCategory] = useState();
+
     return (
-        <SafeAreaView style={styles.screen}>
-            <AppTextInput
-                placeholder='title'
-                autoCapitalize='none'
-                autoCorrect={false}
-            />
-            <AppTextInput
-                placeholder='price'
-                autoCapitalize='none'
-                autoCorrect={false}
-            />
 
-            <AppPicker
-                selectedItem={category}
-                onSelectItem={item => setCategory(item)}
-                items={categories}
-                placeholder='category' />
-
-            <AppTextInput
-                placeholder='description'
-                autoCapitalize='none'
-                autoCorrect={false}
-            />
-
-            <AppButton
-                style={{
-                    borderRadius: 20
+        <Screen style={{
+            backgroundColor: 'white'
+        }}>
+            <Formik
+                initialValues={{
+                    title: '',
+                    price: '',
+                    category: '',
+                    description: ''
                 }}
-                color='#fc5c65'
-                onPress={() => console.log()}>Post</AppButton>
-        </SafeAreaView>
+                onSubmit={values => console.log(values)}
+                validationSchema={validationSchema}
+            >
 
+                {({ handleChange, handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => (
+                    <>
+                        <AppTextInput
+                            placeholder='Title'
+                            onBlur={() => setFieldTouched('title')}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            placeholderTextColor='grey'
+                            onChangeText={handleChange('title')}
+                        />
+                        {errors.title && touched.title && <Text style={styles.error}>{errors.title}</Text>}
+
+                        <AppTextInput
+                            placeholder='Price'
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            onBlur={() => setFieldTouched('price')}
+                            placeholderTextColor='grey'
+                            onChangeText={handleChange('price')}
+                        />
+                        {errors.price && touched.price && <Text style={styles.error}>{errors.price}</Text>}
+
+                        <AppPicker
+                            selectedItem={values['category']}
+                            onSelectItem={(item) => setFieldValue('category', item)}
+                            items={categories}
+                            placeholder='Category'
+                            onBlur={() => setFieldTouched('category')}
+                        />
+                        {errors.category && touched.category && <Text style={styles.error}>{errors.category}</Text>}
+
+                        <AppTextInput
+                            placeholder='Description'
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            placeholderTextColor='grey'
+                            onChangeText={handleChange('description')}
+                            onBlur={() => setFieldTouched('description')}
+                        />
+                        {errors.description && touched.description && <Text style={styles.error}>{errors.description}</Text>}
+
+                        <AppButton
+                            style={{
+                                borderRadius: 20
+                            }}
+                            color='#fc5c65'
+                            onPress={handleSubmit}>Post</AppButton>
+                    </>
+                )}
+            </Formik>
+
+        </Screen>
     )
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        marginTop: 20,
-        padding: 10,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    error: {
+        color: 'red',
+        marginHorizontal: 15,
+
     }
+
 })

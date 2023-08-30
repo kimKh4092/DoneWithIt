@@ -22,7 +22,7 @@ const options = [
     }
 ]
 
-export default function AccountScreen() {
+export default function AccountScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <GestureHandlerRootView >
@@ -45,7 +45,7 @@ export default function AccountScreen() {
                                 title={item.title}
                                 icon={item.icon}
                                 color={item.color}
-                                onPress={() => console.log("selected")}
+                                onPress={() => navigation.navigate('Messages')}
                             />}
                         ItemSeparatorComponent={() => <View
                             style={styles.seperate}>
@@ -64,7 +64,6 @@ export default function AccountScreen() {
                     </View>
                 </Screen>
             </GestureHandlerRootView>
-
         </View>
     )
 }

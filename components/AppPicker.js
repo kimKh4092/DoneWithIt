@@ -7,6 +7,7 @@ import {
 import PickerItem from "./PickerItem";
 
 export default function AppPicker({ icon, items, onSelectItem, selectedItem, placeholder }) {
+
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
@@ -20,7 +21,9 @@ export default function AppPicker({ icon, items, onSelectItem, selectedItem, pla
                         color='grey'
                     />}
                     <Text
-                        style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</Text>
+                        style={selectedItem ? styles.text : styles.placeholder}>
+                        {selectedItem ? selectedItem.label : placeholder}
+                    </Text>
 
                     <MaterialCommunityIcons
                         name='chevron-down'
@@ -29,6 +32,7 @@ export default function AppPicker({ icon, items, onSelectItem, selectedItem, pla
                     />
                 </View>
             </TouchableWithoutFeedback>
+
             <Modal visible={modalVisible}
                 animationType="slide">
                 <Button
@@ -53,16 +57,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#f8f4f4',
         borderRadius: 25,
         flexDirection: "row",
-        width: "100%",
         padding: 15,
         marginVertical: 10,
+        margin: 10
     },
     icon: {
         marginRight: 10,
     },
-    text: {
+    placeholder: {
         flex: 1,
         color: 'grey',
+        fontSize: 18,
+        fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir'
+
+    },
+    text: {
+        flex: 1,
+        color: '#0c0c0c',
         fontSize: 18,
         fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir'
     }
