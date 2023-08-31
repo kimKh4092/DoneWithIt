@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-export default function ListingDetails({ publisher }) {
+export default function ListingDetails({ route }) {
     return (
         <View style={styles.container}>
             <GestureHandlerRootView>
@@ -10,10 +10,10 @@ export default function ListingDetails({ publisher }) {
                     <Image
                         resizeMode='contain'
                         style={styles.image}
-                        source={require('../assets/jacket.jpg')} />
+                        source={route.params.item.image} />
 
-                    <Text style={styles.title}>Red jacket for sale</Text>
-                    <Text style={styles.price}>$100</Text>
+                    <Text style={styles.title}>{route.params.item.title}</Text>
+                    <Text style={styles.price}>{route.params.item.subTitle}</Text>
 
                     <View style={styles.publisher}>
                         <Image style={styles.profile} source={require('../assets/mosh.jpg')} />

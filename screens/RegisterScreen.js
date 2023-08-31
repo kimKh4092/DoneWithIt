@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    StyleSheet, Image, Text
+    StyleSheet, Image, Text, View
 
 } from "react-native";
 import AppTextInput from "../components/AppTextInput";
@@ -18,6 +18,7 @@ const validationSchema = Yup.object().shape({
 export default function RegisterScreen() {
 
     return (
+
         <Screen>
             <Image
                 style={styles.image}
@@ -70,6 +71,7 @@ export default function RegisterScreen() {
                 )}
             </Formik>
         </Screen>
+
     )
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    StyleSheet, Image, Text
+    StyleSheet, Image, Text, View
 
 } from "react-native";
 import AppTextInput from "../components/AppTextInput";
@@ -61,6 +61,7 @@ export default function LoginScreen() {
                 )}
             </Formik>
         </Screen>
+
     )
 }
 

@@ -7,6 +7,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   MaterialCommunityIcons
 } from '@expo/vector-icons'
+
+import WelcomeScreen from './screens/WelcomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen'
+
 import MainScreen from './screens/MainScreen';
 import ListingEditeScreen from "./screens/ListingEditeScreen";
 import AccountScreen from './screens/AccountScreen'
@@ -17,8 +22,24 @@ import MessagesScreen from "./screens/MessagesScreen";
 import * as ImagePicker from 'expo-image-picker'
 import ImageInput from "./components/ImageInput";
 import ImageInputList from "./components/ImageInputList";
+import myTheme from "./navigationTheme";
 
 const Stack = createStackNavigator();
+
+const AuthStacks = () => (
+  <Stack.Navigator initialRouteName="Welcome">
+    <Stack.Screen
+      name="Welcome"
+      component={WelcomeScreen}
+      options={{
+        headerShown: false
+      }} />
+    <Stack.Screen name='Login' component={LoginScreen} />
+    <Stack.Screen name='Register' component={RegisterScreen} />
+  </Stack.Navigator>
+
+)
+
 const FeedStacks = () => (
   <Stack.Navigator initialRouteName="Feed">
     <Stack.Screen
@@ -109,9 +130,12 @@ export default function App() {
 
   return (
 
-    <NavigationContainer>
-      <MyTabs />
+    <NavigationContainer theme={myTheme}>
+      {/* <MyTabs /> */}
+      <AuthStacks />
     </NavigationContainer>
+
+
 
     // <Screen>
     //   <GestureHandlerRootView >

@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         color: 'grey',
         fontSize: 18,
         fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir'
-
     },
     text: {
         flex: 1,

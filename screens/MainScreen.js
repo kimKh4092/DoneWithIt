@@ -33,7 +33,9 @@ export default function MainScreen({ navigation }) {
                             title={item.title}
                             subTitle={item.subTitle}
                             image={item.image}
-                            onPress={() => navigation.navigate('ListingDetails')} />} />
+                            onPress={() => {
+                                navigation.navigate('ListingDetails', { item })
+                            }} />} />
             </Screen>
         </View>
     )

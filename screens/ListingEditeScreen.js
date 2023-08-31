@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    StyleSheet, Text
+    StyleSheet, Text, View
 } from "react-native"
 import Screen from '../components/Screen'
 import AppTextInput from "../components/AppTextInput";
@@ -34,73 +34,77 @@ const validationSchema = Yup.object().shape({
 export default function ListingEditeScreen() {
 
     return (
-
-        <Screen style={{
+        <View style={{
+            flex: 1,
             backgroundColor: 'white'
         }}>
-            <Formik
-                initialValues={{
-                    title: '',
-                    price: '',
-                    category: '',
-                    description: ''
-                }}
-                onSubmit={values => console.log(values)}
-                validationSchema={validationSchema}
-            >
+            <Screen>
+                <Formik
+                    initialValues={{
+                        title: '',
+                        price: '',
+                        category: '',
+                        description: ''
+                    }}
+                    onSubmit={values => console.log(values)}
+                    validationSchema={validationSchema}
+                >
 
-                {({ handleChange, handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => (
-                    <>
-                        <AppTextInput
-                            placeholder='Title'
-                            onBlur={() => setFieldTouched('title')}
-                            autoCapitalize='none'
-                            autoCorrect={false}
-                            placeholderTextColor='grey'
-                            onChangeText={handleChange('title')}
-                        />
-                        {errors.title && touched.title && <Text style={styles.error}>{errors.title}</Text>}
+                    {({ handleChange, handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => (
+                        <>
+                            <AppTextInput
+                                placeholder='Title'
+                                onBlur={() => setFieldTouched('title')}
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                placeholderTextColor='grey'
+                                onChangeText={handleChange('title')}
+                            />
+                            {errors.title && touched.title && <Text style={styles.error}>{errors.title}</Text>}
 
-                        <AppTextInput
-                            placeholder='Price'
-                            autoCapitalize='none'
-                            autoCorrect={false}
-                            onBlur={() => setFieldTouched('price')}
-                            placeholderTextColor='grey'
-                            onChangeText={handleChange('price')}
-                        />
-                        {errors.price && touched.price && <Text style={styles.error}>{errors.price}</Text>}
+                            <AppTextInput
+                                placeholder='Price'
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                onBlur={() => setFieldTouched('price')}
+                                placeholderTextColor='grey'
+                                onChangeText={handleChange('price')}
+                            />
+                            {errors.price && touched.price && <Text style={styles.error}>{errors.price}</Text>}
 
-                        <AppPicker
-                            selectedItem={values['category']}
-                            onSelectItem={(item) => setFieldValue('category', item)}
-                            items={categories}
-                            placeholder='Category'
-                            onBlur={() => setFieldTouched('category')}
-                        />
-                        {errors.category && touched.category && <Text style={styles.error}>{errors.category}</Text>}
+                            <AppPicker
+                                selectedItem={values['category']}
+                                onSelectItem={(item) => setFieldValue('category', item)}
+                                items={categories}
+                                placeholder='Category'
+                                onBlur={() => setFieldTouched('category')}
+                            />
+                            {errors.category && touched.category && <Text style={styles.error}>{errors.category}</Text>}
 
-                        <AppTextInput
-                            placeholder='Description'
-                            autoCapitalize='none'
-                            autoCorrect={false}
-                            placeholderTextColor='grey'
-                            onChangeText={handleChange('description')}
-                            onBlur={() => setFieldTouched('description')}
-                        />
-                        {errors.description && touched.description && <Text style={styles.error}>{errors.description}</Text>}
+                            <AppTextInput
+                                placeholder='Description'
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                placeholderTextColor='grey'
+                                onChangeText={handleChange('description')}
+                                onBlur={() => setFieldTouched('description')}
+                            />
+                            {errors.description && touched.description && <Text style={styles.error}>{errors.description}</Text>}
 
-                        <AppButton
-                            style={{
-                                borderRadius: 20
-                            }}
-                            color='#fc5c65'
-                            onPress={handleSubmit}>Post</AppButton>
-                    </>
-                )}
-            </Formik>
+                            <AppButton
+                                style={{
+                                    borderRadius: 20
+                                }}
+                                color='#fc5c65'
+                                onPress={handleSubmit}>Post</AppButton>
+                        </>
+                    )}
+                </Formik>
 
-        </Screen>
+            </Screen>
+        </View>
+
+
     )
 }
 
