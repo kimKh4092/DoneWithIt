@@ -30,12 +30,12 @@ const validationSchema = Yup.object().shape({
     price: Yup.number().required().label('Price'),
     category: Yup.object().required().label('Category'),
     description: Yup.string().required().min(4).label('Description'),
+    images: Yup.array().min(1, 'Choose at least one image.').label('Images')
 })
 
 export default function ListingEditeScreen() {
 
     return (
-
         <Screen>
             <Formik
                 initialValues={{
@@ -43,6 +43,7 @@ export default function ListingEditeScreen() {
                     price: '',
                     category: '',
                     description: '',
+                    images: []
 
                 }}
                 onSubmit={values => console.log(values)}
@@ -50,8 +51,18 @@ export default function ListingEditeScreen() {
             >
                 {({ handleChange, handleSubmit, errors, setFieldValue, values, setFieldTouched, touched }) => (
                     <>
+                        <ImageFormPicker
+                            onSelectImage={(uri) => {
+                                setFieldValue('images', [uri, ...values['images']])
+                            }}
+                            imageUris={values['images']}
+                            onRemoveImage={(uri) => {
+                                const newUris = values['images'].filter((imageUri) => imageUri !== uri);
+                                setFieldValue('images', newUris);
+                            }}
+                            onBlur={() => setFieldTouched('images')} />
 
-                        <ImageFormPicker />
+                        {errors.images && touched.images && <Text style={styles.error}>{errors.images}</Text>}
 
                         <AppTextInput
                             placeholder='Title'

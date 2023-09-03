@@ -7,10 +7,10 @@ export default function AppCard({ title, subTitle, image, onPress }) {
             <Image
                 resizeMode='contain'
                 style={styles.image}
-                source={image} />
+                source={{ uri: image }} />
 
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subTitle}>{subTitle}</Text>
+            <Text style={styles.subTitle}>${subTitle}</Text>
         </View>
     </TouchableWithoutFeedback>
 }

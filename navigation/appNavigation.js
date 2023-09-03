@@ -16,12 +16,12 @@ import MessagesScreen from "../screens/MessagesScreen";
 const Stack = createStackNavigator();
 
 const FeedStacks = () => (
-    <Stack.Navigator initialRouteName="Feed">
+    <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
             options={{
                 headerShown: false
             }}
-            name="Feed"
+            name="Main"
             component={MainScreen} />
         <Stack.Screen
             options={{

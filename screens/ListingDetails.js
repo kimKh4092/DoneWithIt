@@ -10,10 +10,10 @@ export default function ListingDetails({ route }) {
                     <Image
                         resizeMode='contain'
                         style={styles.image}
-                        source={route.params.item.image} />
+                        source={{ uri: route.params.item.images[0].url }} />
 
                     <Text style={styles.title}>{route.params.item.title}</Text>
-                    <Text style={styles.price}>{route.params.item.subTitle}</Text>
+                    <Text style={styles.price}>${route.params.item.price}</Text>
 
                     <View style={styles.publisher}>
                         <Image style={styles.profile} source={require('../assets/mosh.jpg')} />
